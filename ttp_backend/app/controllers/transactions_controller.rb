@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
 
     def index
         user = User.find(params[:user_id])
-        transactions = Transactions.select{|transaction| transaction.user_id === user.id}
+        transactions = Transaction.select{|transaction| transaction.user_id === user.id}
         render json: transactions
     end
 
