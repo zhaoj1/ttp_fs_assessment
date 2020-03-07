@@ -13,8 +13,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    user = User.find_by(params[:id])
+  def index
+    users = User.all
+    render json: users
+  end
+
+  def update
+    user = User.find_by(id: params[:id])
+    user.update(userParams)
     render json: user
   end
 
