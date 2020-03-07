@@ -1,4 +1,7 @@
 class TransactionsController < ApplicationController
+    
+    skip_before_action :verify_authenticity_token
+
     def create
         transaction = Transaction.new(transactionParams)
         if transaction.save
@@ -17,16 +20,6 @@ class TransactionsController < ApplicationController
     def show
         transaction = Transaction.find(params[:id])
         render json: transaction
-    end
-
-    def update
-        transaction = Transaction.find(params[:id])
-        transaction.update(transactionParams)
-    end
-
-    def destroy
-        transaction = Transaction.find(params[:id])
-        transaction.destroy
     end
 
     private
